@@ -11,8 +11,8 @@ AllCops:
 
 ConditionalAssignment:
   Enabled: false
-StringLiterals:
-  Enabled: false
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
 RedundantReturn:
   Enabled: false
 Documentation:
@@ -33,10 +33,8 @@ MissingRespondToMissing:
   Enabled: false
 MethodMissingSuper:
   Enabled: false
-Style/FrozenStringLiteralComment:
-  Enabled: false
 LineLength:
-  Max: 120
+  Max: 150
 Style/EmptyMethod:
   Enabled: false
 Bundler/OrderedGems:
