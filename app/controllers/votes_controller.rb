@@ -8,11 +8,11 @@ class VotesController < ApplicationController
     @vote = Vote.new(params_vote)
     @vote.pin = @pin
     @vote.user = current_user
-    if @vote.save
-      redirect_to pin_path(@pin)
-    else
-      render "new"
-    end
+    # if @vote.save
+    #   redirect_to pin_path(@pin)
+    # else
+    #   render "pin"
+    # end
   end
 
   def params_vote

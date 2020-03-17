@@ -5,7 +5,7 @@ class PinsController < ApplicationController
     if @pin.save
       redirect_to dashboard_path(@pin)
     else
-      render "new"
+      render "pin"
     end
   end
 

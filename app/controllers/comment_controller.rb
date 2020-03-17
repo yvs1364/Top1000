@@ -4,11 +4,11 @@ class CommentController < ApplicationController
     @comment = Comment.new(params_comment)
     @comment.pin = @pin
     @comment.user = current_user
-    if @comment.save
-      redirect_to pin_path(@pin)
-    else
-      render "new"
-    end
+    # if @comment.save
+    #   redirect_to pin_path(@pin)
+    # else
+    #   render "new"
+    # end
   end
 
   def new
