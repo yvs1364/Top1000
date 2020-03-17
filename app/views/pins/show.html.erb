@@ -1,0 +1,18 @@
+<h1><%= @pin.title %></h1>
+<div></div>
+<% sum = 0 %>
+<% @pin.votes.each do |vote|  %>
+<% sum += vote.note %>
+<% end  %>
+<% average = sum / @pin.votes.count %>
+<p><%= average %></p>
+<p><%= @pin.description %></p>
+
+<div><% @pin.comments.each do |comment| %>
+<h5><%= comment.user.username %></h5>
+<p><%= comment.content %></p>
+<% end %>
+</div>
+
+
+

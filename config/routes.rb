@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'dashboard', to: 'pages#dashboard'
   resources :comments, only: [:destroy, :update, :edit]
   resources :pins, except: :index do
-    resources :comments, only: [:index, :create, :new]
+    resources :comments, only: [:create, :new]
     resources :votes, only: [:create, :new]
   end
 

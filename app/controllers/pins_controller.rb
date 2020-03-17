@@ -10,7 +10,7 @@ class PinsController < ApplicationController
   end
 
   def new
-    @pigeon = Pigeon.new
+    @pin = Pin.new
   end
 
   def index
