@@ -1,20 +1,43 @@
-h1{
+body {
+  background-color: white;
+}
+
+h1 {
   text-align: center;
 }
-h3{
+
+h3 {
   text-align: center;
 }
-h4{
+
+h4 {
   text-align: center;
 }
-p{
+
+p {
   text-align: center;
   margin-bottom: -2px;
 }
-#journey{
+
+#journey {
   margin-left: 10px;
 }
-.picture{
+
+.col-12 {
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 0 5px rgba(250,39,2,0.3);
+  border-radius: 0 0 5px 5px;
+}
+
+#pf {
+  margin-top: 60px;
+  background-color: white;
+  box-shadow: 0 0 5px rgba(250,39,2,0.3);
+  border-radius: 5px 5px 0 0;
+}
+
+.picture {
   border-radius: 50%;
   display: block;
   margin-top: 10px;
@@ -24,3 +47,24 @@ p{
   box-shadow: 0 0 5px rgba(0,0,0,0.3);
 }
 
+.picture-pins {
+  width: 47%;
+  margin: 3px;
+  border-radius: 5px;
+  box-shadow: 0 0 2px rgba(250,39,2,0.3);
+}
+
+.picture-friends {
+  width: 47%;
+  margin: 3px;
+  border-radius: 5px;
+  box-shadow: 0 0 2px rgba(250,39,2,0.3);
+}
+
+.picture-xp {
+  width: 40%;
+  margin-top: -15px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
