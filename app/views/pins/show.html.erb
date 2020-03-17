@@ -1,11 +1,17 @@
 <h1><%= @pin.title %></h1>
 <div></div>
+<h3>Ajoutez une note</h3>
+ <%= simple_form_for [@pin, @vote] do |f| %>
+        <%= f.input :note, collection: 0..5 %>
+        <%= f.button :submit, class: 'btn btn-primary' %>
+      <% end %>
+
 <% sum = 0 %>
 <% @pin.votes.each do |vote|  %>
 <% sum += vote.note %>
 <% end  %>
 <% average = sum / @pin.votes.count %>
-<p><%= average %></p>
+<p>Note moyenne : <%= average %>/5</p>
 <p><%= @pin.description %></p>
 
 <div><% @pin.comments.each do |comment| %>
@@ -13,6 +19,12 @@
 <p><%= comment.content %></p>
 <% end %>
 </div>
+
+<h3>Ajouter un commentaire</h3>
+ <%= simple_form_for [@pin, @comment] do |f| %>
+        <%= f.input :content %>
+        <%= f.button :submit, class: 'btn btn-primary' %>
+      <% end %>
 
 
 
