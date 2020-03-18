@@ -1,5 +1,6 @@
-<!-- <script src="assets/jquery.js" type="text/javascript"></script> -->
-<%= link_to "Back to the map", root_path, class: 'btn btn-primary'%>
+<%= link_to "/", class: "back" do %>
+  <%= image_tag "back.jpg", style: "height: 20px;"%>
+<% end %>
 <h1><%= @pin.title %></h1>
 
 <ul class="ratings">
@@ -41,13 +42,13 @@
 <p><%= @pin.description %></p>
 <h3>Comments (<%= @pin.comments.count %>)</h3>
 
-<div><% @pin.comments.each do |comment| %>
+<div class="col-12">
+<% @pin.comments.each do |comment| %>
   <h5><%= comment.user.username %></h5>
   <p><%= comment.content %></p>
   <% end %>
 </div>
-
-<h3>Ajouter un commentaire</h3>
+<h3>Add comment</h3>
 <%= simple_form_for [@pin, @comment] do |f| %>
 <%= f.input :content %>
 <%= f.button :submit, class: 'btn btn-primary' %>
