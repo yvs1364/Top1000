@@ -1,5 +1,5 @@
 class PinsController < ApplicationController
-  def index    
+  def index
     @pins = policy_scope(Pin).order(created_at: :desc)
     @pins = Pin.near([current_user.latitude, current_user.longitude], 0.10)
     @user_marker =
@@ -8,11 +8,6 @@ class PinsController < ApplicationController
         lng: current_user.longitude,
         image_url: helpers.asset_url("mark.png")
       }
-
-
-    
-    @pins = policy_scope(Pin).order(created_at: :desc)
-
     @markers = @pins.map do |pin|
       {
         lat: pin.latitude,
