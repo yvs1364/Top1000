@@ -13,7 +13,7 @@ Vote.destroy_all
 Comment.destroy_all
 
 mehdi = User.create!(username: 'Mehdi', email: 'mehdi@mail.fr', password: 'password', address: 'Paris')
-yvan = User.create!(username: 'Yvan', email: 'Yvan@mail.fr', password: 'password', address: 'Pau')
+yvan = User.create!(username: 'Yvan', email: 'Yvan@mail.fr', password: 'password', address: "18 Place Georges Clemenceau Pau")
 manu = User.create!(username: 'Manu', email: 'manu@mail.fr', password: 'password', address: 'Marseille')
 10.times do
   User.create!(
