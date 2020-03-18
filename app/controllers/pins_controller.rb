@@ -11,6 +11,8 @@ class PinsController < ApplicationController
 
   def new
     @pin = Pin.new
+    @comment = Comment.new
+    @vote = Vote.new
   end
 
   def index

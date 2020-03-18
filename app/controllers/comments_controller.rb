@@ -1,14 +1,18 @@
-class CommentController < ApplicationController
+class CommentsController < ApplicationController
   def create
     @pin = Pin.find(params[:pin_id])
-    @comment = Comment.new(params_comment)
+    @comment = Comment.new(comment_params)
     @comment.pin = @pin
+
     @comment.user = current_user
-    # if @comment.save
-    #   redirect_to pin_path(@pin)
-    # else
-    #   render "new"
-    # end
+    if @comment.save
+
+      redirect_to pin_path(@pin)
+    else
+      raise
+      render "pins/show"
+
+    end
   end
 
   def new
@@ -29,7 +33,7 @@ class CommentController < ApplicationController
 
   private
 
-  def params_comment
-    params.require(:comment).permit(:content)
+  def comment_params
+    params.require(:comment).permit(:content, :pin, :user)
   end
 end
