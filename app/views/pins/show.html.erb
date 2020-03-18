@@ -8,10 +8,17 @@
 <% else %>
 <div></div>
 <% end %>
+<% users = [] %>
+<% @pin.votes.each do |vote|%>
+<% users << vote.user %>
+<% end %>
+<% if !users.include? current_user %>
 <%= simple_form_for [@pin, @vote] do |f| %>
 <%= f.input :note, collection: 0..5 %>
 <%= f.button :submit, class: 'btn btn-primary' %>
 <% end %>
+<% end %>
+
 
 <% sum = 0 %>
 <% if @pin.votes.length == 0 %>
