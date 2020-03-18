@@ -1,10 +1,12 @@
 class PinsController < ApplicationController
   def index
     @pins = Pin.all
-    @markes = @pins.map do |pin|
+    @markers = @pins.map do |pin|
       {
         lat: pin.latitude,
-        lng: pin.longitude
+        lng: pin.longitude,
+        image_url: helpers.asset_url("pin.png"),
+        infoWindow: render_to_string(partial: "info_window", locals: { pin: pin })
       }
     end
   end
