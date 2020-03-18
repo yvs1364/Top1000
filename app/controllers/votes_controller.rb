@@ -11,7 +11,6 @@ class VotesController < ApplicationController
     if @vote.save
 
       redirect_to pin_path(@pin)
-      raise
     else
       render "pins/show"
     end

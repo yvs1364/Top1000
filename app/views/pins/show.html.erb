@@ -1,6 +1,6 @@
 <h1><%= @pin.title %></h1>
 <div></div>
-<h3>Ajoutez une note</h3>
+<h5>Ajoutez une note</h5>
 <%= simple_form_for [@pin, @vote] do |f| %>
         <%= f.input :note, collection: 0..5 %>
         <%= f.button :submit, class: 'btn btn-primary' %>
