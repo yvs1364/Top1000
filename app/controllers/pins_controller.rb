@@ -1,4 +1,14 @@
 class PinsController < ApplicationController
+  def index
+    @pins = Pin.all
+    @markes = @pins.map do |pin|
+      {
+        lat: pin.latitude,
+        lng: pin.longitude
+      }
+    end
+  end
+
   def create
     @pin = Pin.new(pin_params)
     @pin.user_id = current_user.id
@@ -15,9 +25,6 @@ class PinsController < ApplicationController
     @vote = Vote.new
   end
 
-  def index
-    @pins = Pin.all
-  end
 
   def destroy
     @pin = Pin.find(params[:id])
