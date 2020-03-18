@@ -15,12 +15,14 @@ class PinsController < ApplicationController
     if @pin.save
       redirect_to dashboard_path(@pin)
     else
-      render "new"
+      render "pin"
     end
   end
 
   def new
     @pin = Pin.new
+    @comment = Comment.new
+    @vote = Vote.new
   end
 
 
@@ -32,6 +34,8 @@ class PinsController < ApplicationController
 
   def show
     @pin = Pin.find(params[:id])
+    @comment = Comment.new
+    @vote = Vote.new
   end
 
   private
