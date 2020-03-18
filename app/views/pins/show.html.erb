@@ -1,10 +1,24 @@
 <h1><%= @pin.title %></h1>
+
+<% if @pin.photo.attached? %>
 <div><%= cl_image_tag @pin.photo.key, height: 300, width: 400, crop: :fill %></div>
 <h5>Ajoutez une note</h5>
+
+
+<% else %>
+<div></div>
+<% end %>
+<% users = [] %>
+<% @pin.votes.each do |vote|%>
+<% users << vote.user %>
+<% end %>
+<% if !users.include? current_user %>
 <%= simple_form_for [@pin, @vote] do |f| %>
-        <%= f.input :note, collection: 0..5 %>
-        <%= f.button :submit, class: 'btn btn-primary' %>
-      <% end %>
+<%= f.input :note, collection: 0..5 %>
+<%= f.button :submit, class: 'btn btn-primary' %>
+<% end %>
+<% end %>
+
 
 <% sum = 0 %>
 <% if @pin.votes.length == 0 %>
@@ -20,16 +34,16 @@
 <p><%= @pin.description %></p>
 
 <div><% @pin.comments.each do |comment| %>
-<h5><%= comment.user.username %></h5>
-<p><%= comment.content %></p>
-<% end %>
+  <h5><%= comment.user.username %></h5>
+  <p><%= comment.content %></p>
+  <% end %>
 </div>
 
 <h3>Ajouter un commentaire</h3>
- <%= simple_form_for [@pin, @comment] do |f| %>
-        <%= f.input :content %>
-        <%= f.button :submit, class: 'btn btn-primary' %>
-      <% end %>
+<%= simple_form_for [@pin, @comment] do |f| %>
+<%= f.input :content %>
+<%= f.button :submit, class: 'btn btn-primary' %>
+<% end %>
 
 
 

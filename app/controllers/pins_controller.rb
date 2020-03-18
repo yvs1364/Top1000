@@ -1,5 +1,6 @@
 class PinsController < ApplicationController
-  def index
+  def index    
+    @pins = policy_scope(Pin).order(created_at: :desc)
     @pins = Pin.near([current_user.latitude, current_user.longitude], 0.10)
     @user_marker =
       {
@@ -7,6 +8,10 @@ class PinsController < ApplicationController
         lng: current_user.longitude,
         image_url: helpers.asset_url("mark.png")
       }
+
+
+    
+    @pins = policy_scope(Pin).order(created_at: :desc)
 
     @markers = @pins.map do |pin|
       {
@@ -26,25 +31,32 @@ class PinsController < ApplicationController
     else
       render "pin"
     end
+    authorize @pin
   end
 
   def new
     @pin = Pin.new
+    authorize @pin
     @comment = Comment.new
+    authorize @comment
     @vote = Vote.new
-  end
 
+    authorize @vote
+  end
 
   def destroy
     @pin = Pin.find(params[:id])
     @pin.destroy
     redirect_to pins_path
+    authorize @pin
   end
 
   def show
+    @pin = policy_scope(Pin).order(created_at: :desc)
     @pin = Pin.find(params[:id])
     @comment = Comment.new
     @vote = Vote.new
+    authorize @pin
   end
 
   private

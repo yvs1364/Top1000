@@ -11,18 +11,20 @@ class CommentsController < ApplicationController
     else
       raise
       render "pins/show"
-
     end
+    authorize @comment
   end
 
   def new
     @comment = Comment.new
+    authorize @comment
   end
 
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
     redirect_to pin_path(@comment.pin)
+    authorize @comment
   end
 
   def edit
