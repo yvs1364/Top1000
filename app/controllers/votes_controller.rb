@@ -1,6 +1,7 @@
 class VotesController < ApplicationController
   def new
     @vote = Vote.new
+    authorize @vote
   end
 
   def create
@@ -14,6 +15,7 @@ class VotesController < ApplicationController
     else
       render "pins/show"
     end
+    authorize @vote
   end
 
   def params_vote
