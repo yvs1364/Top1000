@@ -1,0 +1,8 @@
+<%= simple_form_for @pin do |f| %>
+        <%= f.input :title%>
+        <%= f.input :description %>
+        <%= f.input :address, input_html: {id:'address'} %>
+        <%= f.input :photo, as: :file %>
+        <%= f.button :submit, class: 'btn btn-primary' %>
+      <% end %>
+

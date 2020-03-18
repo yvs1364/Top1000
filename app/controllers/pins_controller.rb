@@ -13,7 +13,7 @@ class PinsController < ApplicationController
     @pin = Pin.new(pin_params)
     @pin.user_id = current_user.id
     if @pin.save
-      redirect_to dashboard_path(@pin)
+      redirect_to pin_path(@pin)
     else
       render "pin"
     end
