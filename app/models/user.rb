@@ -5,16 +5,12 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one_attached :photo
-  has_many :visits
-  has_many :comments
-  has_many :votes
-
   validates :username, presence: true, uniqueness: true
   validates :address, presence: true
-  has_many :pins
-  has_many :comments
-  has_many :votes
-  has_many :visits
+  has_many :pins, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :votes, dependent: :destroy
+  has_many :visits, dependent: :destroy
 
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
