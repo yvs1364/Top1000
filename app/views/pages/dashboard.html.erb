@@ -2,23 +2,82 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <img class="picture" src="https://www.fondationbiodiversite.fr/wp-content/uploads/2019/02/FRB-Raoul-Daubresse.jpg">
+      <div class="user-picture">
+        <img class="picture" src="https://www.fondationbiodiversite.fr/wp-content/uploads/2019/02/FRB-Raoul-Daubresse.jpg">
+        <img class="badge-level" src="https://www.fondationbiodiversite.fr/wp-content/uploads/2019/02/FRB-Raoul-Daubresse.jpg"/>
+      </div>
       <h5>Username</h5>
       <p>LVL</p>
       <%= image_tag "xp.png", class: "picture-xp" %>
     </div>
 
-    <div class="col-12" id="Badges">
-      <p>Badges:<p>
+
+    <div class="tab col-12 row justify-content-around">
+      <div class="col-3 button">
+        <button class="tablinks" onclick="openTab(event, 'badges')">Badges</button>
+      </div>
+      <div class="col-3 button">
+        <button class="tablinks" onclick="openTab(event, 'pins-visited')">Pins Visited</button>
+      </div>
+      <div class="col-3 button">
+        <button class="tablinks" onclick="openTab(event, 'friends')">Friends</button>
+      </div>
+      <div class="col-3 button">
+        <button class="tablinks" onclick="openTab(event, 'pins-created')">Pins Created</button>
+      </div>
     </div>
 
-    <div class="col-12" id="pf">
-      <p>Pins :</p>
-      <img class="picture-pins" src="https://www.fondationbiodiversite.fr/wp-content/uploads/2019/02/FRB-Raoul-Daubresse.jpg">
-      <%= image_tag "plus.png", class: "picture-pins" %>
-      <p>Friends :</p>
-      <img class="picture-friends" src="https://www.fondationbiodiversite.fr/wp-content/uploads/2019/02/FRB-Raoul-Daubresse.jpg">
-      <%= image_tag "plus.png", class: "picture-friends" %>
+    <div id="badges" class="tabcontent">
+      <div class="col-12" id="Badges">
+        <p>Badges:<p>
+      </div>
+    </div>
+
+    <div id="pins-visited" class="tabcontent">
+      <div class="col-12" id="pf">
+        <p>Pins :</p>
+        <img class="picture-pins" src="https://www.fondationbiodiversite.fr/wp-content/uploads/2019/02/FRB-Raoul-Daubresse.jpg">
+        <%= image_tag "plus.png", class: "picture-pins" %>
+      </div>
+    </div>
+
+    <div id="friends" class="tabcontent">
+      <div class="col-12" id="pf">
+        <p>Friends :</p>
+        <img class="picture-friends" src="https://www.fondationbiodiversite.fr/wp-content/uploads/2019/02/FRB-Raoul-Daubresse.jpg">
+        <%= image_tag "plus.png", class: "picture-friends" %>
+      </div>
+    </div>
+
+    <div id="pins-created" class="tabcontent">
+      <div class="col-12" id="pf">
+        <p>Pins :</p>
+        <img class="picture-pins" src="https://www.fondationbiodiversite.fr/wp-content/uploads/2019/02/FRB-Raoul-Daubresse.jpg">
+        <%= image_tag "plus.png", class: "picture-pins" %>
+      </div>
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  function openTab(evt, tabName) {
+  // Declare all variables
+  var i, tabcontent, tablinks;
+
+  // Get all elements with class="tabcontent" and hide them
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  // Get all elements with class="tablinks" and remove the class "active"
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+  // Show the current tab, and add an "active" class to the button that opened the tab
+  document.getElementById(tabName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+</script>
