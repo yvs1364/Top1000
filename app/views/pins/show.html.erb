@@ -1,17 +1,25 @@
+<%= link_to "/", class: "back" do %>
+  <%= image_tag "back.jpg", style: "height: 20px;"%>
+<% end %>
 <h1><%= @pin.title %></h1>
 
+<ul class="ratings">
+  <li class="star"></li>
+  <li class="star"></li>
+  <li class="star"></li>
+  <li class="star"></li>
+  <li class="star"></li>
+</ul>
 <% if @pin.photo.attached? %>
-<div><%= cl_image_tag @pin.photo.key, height: 300, width: 400, crop: :fill %></div>
-<h5>Ajoutez une note</h5>
-
-
+  <div><%= cl_image_tag @pin.photo.key, height: 300, width: 400, crop: :fill %></div>
+  <h5>Ajoutez une note</h5>
 <% else %>
-<div></div>
-<% end %>
-<% users = [] %>
-<% @pin.votes.each do |vote|%>
-<% users << vote.user %>
-<% end %>
+    <div></div>
+  <% end %>
+  <% users = [] %>
+  <% @pin.votes.each do |vote|%>
+  <% users << vote.user %>
+  <% end %>
 <% if !users.include? current_user %>
 <%= simple_form_for [@pin, @vote] do |f| %>
 <%= f.input :note, collection: 0..5 %>
@@ -32,18 +40,16 @@
 <% end %>
 
 <p><%= @pin.description %></p>
+<h3>Comments (<%= @pin.comments.count %>)</h3>
 
-<div><% @pin.comments.each do |comment| %>
+<div class="col-12">
+<% @pin.comments.each do |comment| %>
   <h5><%= comment.user.username %></h5>
   <p><%= comment.content %></p>
   <% end %>
 </div>
-
-<h3>Ajouter un commentaire</h3>
+<h3>Add comment</h3>
 <%= simple_form_for [@pin, @comment] do |f| %>
 <%= f.input :content %>
 <%= f.button :submit, class: 'btn btn-primary' %>
 <% end %>
-
-
-
