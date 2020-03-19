@@ -32,7 +32,7 @@ puts "#{User.count} users created"
     title: Faker::Book.title,
     description: %w(histoire1 histoire2 histoire3 histoire4 histoire5 histoire6 histoire7 histoire8 histoire9).sample,
     address: ["17 Rue de la Loge 13002 Marseille","68 Quai du Port 13002 Marseille",
-      "62 Quai du Port 13002 Marseille","2 Rue de la Guirlande 13002 Marseille"].sample,
+    "62 Quai du Port 13002 Marseille","2 Rue de la Guirlande 13002 Marseille"].sample,
     user: [yvan, manu, mehdi].sample
     )
 end
