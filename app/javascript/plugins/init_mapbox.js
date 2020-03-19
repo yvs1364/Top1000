@@ -18,6 +18,7 @@ const addMarkersToMap = (map, markers) => {
 };
 const addUserMarkerToMap = (map, userMarkerPosition) =>{
   const userMar = document.createElement('div');
+
   userMar.className = 'user_marker';
   userMar.style.backgroundImage = `url('${userMarkerPosition.image_url}')`;
   userMar.style.backgroundSize = 'contain';
@@ -27,6 +28,15 @@ const addUserMarkerToMap = (map, userMarkerPosition) =>{
   new mapboxgl.Marker(userMar)
   .setLngLat([ userMarkerPosition.lng, userMarkerPosition.lat ])
   .addTo(map)
+
+  map.addControl(
+    new mapboxgl.GeolocateControl({
+      positionOptions: {
+        enableHighAccuracy: true
+      },
+      trackUserLocation: true
+    })
+  );
 };
 
 const centerMapToUser = (map, userPosition) =>{
