@@ -31,6 +31,10 @@
     <% sum += vote.note %>
     <% end  %>
     <% average = sum / @pin.votes.count %>
+     <div class="m-1"><%= simple_form_for [@pin, @vote] do |f| %>
+        <%= f.input :note, collection: 0..5 %>
+        <%= f.button :submit, class: 'btn btn-primary' %>
+        <% end %></div>
     <% end %>
 
     <% case average %>
@@ -84,10 +88,8 @@
       <li class="star star-yellow"></li>
     </ul>
     <% end %>
-    <div class="m-1"><%= simple_form_for [@pin, @vote] do |f| %>
-        <%= f.input :note, collection: 0..5 %>
-        <%= f.button :submit, class: 'btn btn-primary' %>
-        <% end %></div>
+
+
 
     <p>
       <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
