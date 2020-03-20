@@ -7,13 +7,21 @@
   text-align: left;
 }
 
-.star {
+.star-white {
+  position: relative;
+  line-height: 60px;
+  display: inline-block;
+  color: #ebebeb;
+}
+
+.star-yellow {
   position: relative;
   line-height: 60px;
   display: inline-block;
   transition: color 0.2s ease;
-  color: #ebebeb;
+  color: #FFDF00;
 }
+
 
 .star:before {
   content: '\2605';
@@ -21,6 +29,7 @@
   height: 60px;
   font-size: 60px;
 }
+
 
 .star:hover,
 .star.selected,
