@@ -1,60 +1,112 @@
   <%= link_to "/", class: "back" do %>
-    <%= image_tag "back.jpg", style: "height: 20px;"%>
-  <% end %>
-<div class="container">
-  <h1><%= @pin.title %></h1>
 
-  <% if @pin.photo.attached? %>
+  <%= image_tag "back.jpg", style: "height: 20px;"%>
+  <% end %>
+  <div class="container">
+    <h1><%= @pin.title %></h1>
+
+    <% if @pin.photo.attached? %>
     <div><%= cl_image_tag @pin.photo.key, height: 300, width: 400, crop: :fill %></div>
     <h5>Ajoutez une note</h5>
-  <% else %>
-      <div></div>
-  <% end %>
+    <% else %>
+    <div></div>
+    <% end %>
     <% users = [] %>
     <% @pin.votes.each do |vote|%>
     <% users << vote.user %>
     <% end %>
-  <% if !users.include? current_user %>
+    <% if !users.include? current_user %>
     <%= simple_form_for [@pin, @vote] do |f| %>
-      <%= f.input :note, collection: 0..5 %>
-      <%= f.button :submit, class: 'btn btn-primary' %>
+    <%= f.input :note, collection: 0..5 %>
+    <%= f.button :submit, class: 'btn btn-primary' %>
     <% end %>
-  <% end %>
-  <p><%= @pin.description %></p>
-  <h3>Comments (<%= @pin.comments.count %>)</h3>
+    <% end %>
+    <p><%= @pin.description %></p>
 
 
-  <% sum = 0 %>
+    <% sum = 0 %>
     <% if @pin.votes.length == 0 %>
-      <p><% "0 votes for the moment" %></p>
+    <p><% "0 votes for the moment" %></p>
     <% else %>
-      <% @pin.votes.each do |vote|  %>
-      <% sum += vote.note %>
-      <% end  %>
-      <% average = sum / @pin.votes.count %>
-    <p>Note moyenne : <%= average %>/5</p>
+    <% @pin.votes.each do |vote|  %>
+    <% sum += vote.note %>
+    <% end  %>
+    <% average = sum / @pin.votes.count %>
+     <div class="m-1"><%= simple_form_for [@pin, @vote] do |f| %>
+        <%= f.input :note, collection: 0..5 %>
+        <%= f.button :submit, class: 'btn btn-primary' %>
+        <% end %></div>
     <% end %>
-  <ul class="ratings">
-    <li class="star"></li>
-    <li class="star"></li>
-    <li class="star"></li>
-    <li class="star"></li>
-    <li class="star"></li>
-  </ul>
+
+    <% case average %>
+    <% when 0 %>
+    <ul class="ratings">
+      <li class="star star-white"></li>
+      <li class="star star-white"></li>
+      <li class="star star-white"></li>
+      <li class="star star-white"></li>
+      <li class="star star-white"></li>
+    </ul>
+    <% when 1 %>
+    <ul class="ratings">
+      <li class="star star-white"></li>
+      <li class="star star-white"></li>
+      <li class="star star-white"></li>
+      <li class="star star-white"></li>
+      <li class="star star-yellow"></li>
+    </ul>
+    <% when 2 %>
+    <ul class="ratings">
+      <li class="star star-white"></li>
+      <li class="star star-white"></li>
+      <li class="star star-white"></li>
+      <li class="star star-yellow"></li>
+      <li class="star star-yellow"></li>
+    </ul>
+    <% when 3 %>
+    <ul class="ratings">
+      <li class="star star-white"></li>
+      <li class="star star-white"></li>
+      <li class="star star-yellow"></li>
+      <li class="star star-yellow"></li>
+      <li class="star star-yellow"></li>
+    </ul>
+    <% when 4 %>
+    <ul class="ratings">
+      <li class="star star-white"></li>
+      <li class="star star-yellow"></li>
+      <li class="star star-yellow"></li>
+      <li class="star star-yellow"></li>
+      <li class="star star-yellow"></li>
+    </ul>
+    <% when 5 %>
+    <ul class="ratings">
+      <li class="star star-white"></li>
+      <li class="star star-yellow"></li>
+      <li class="star star-yellow"></li>
+      <li class="star star-yellow"></li>
+      <li class="star star-yellow"></li>
+      <li class="star star-yellow"></li>
+    </ul>
+    <% end %>
 
 
-    <div class="card-product">
-      <% @pin.comments.each do |comment| %>
-        <div class="card-product-infos">
-          <h5><%= comment.user.username %></h5>
-          <p><%= comment.content %></p>
-        </div>
-      <% end %>
-  </div>
 
-  <h3>Add comment</h3>
-    <%= simple_form_for [@pin, @comment] do |f| %>
+    <p>
+      <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+        <h3>See <%= @pin.comments.count %> comments </h3>
+      </a>
+      <div class="collapse" id="collapseExample">
+        <% @pin.comments.each do |comment| %>
+
+        <h5><%= comment.user.username %></h5>
+        <p><%= comment.content %></p>
+
+        <% end %>
+      </div>
+      <h3>Add a comment</h3>
+      <%= simple_form_for [@pin, @comment] do |f| %>
       <%= f.input :content %>
       <%= f.button :submit, class: 'btn btn-primary' %>
-    <% end %>
-  </div>
+      <% end %>
+

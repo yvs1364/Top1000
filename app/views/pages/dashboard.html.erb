@@ -12,18 +12,21 @@
     </div>
 
 
-    <div class="tab col-12 row justify-content-around">
-      <div class="col-3 button">
-        <button class="tablinks" onclick="openTab(event, 'badges')">Badges</button>
-      </div>
-      <div class="col-3 button">
-        <button class="tablinks" onclick="openTab(event, 'pins-visited')">Pins Visited</button>
-      </div>
-      <div class="col-3 button">
-        <button class="tablinks" onclick="openTab(event, 'friends')">Friends</button>
-      </div>
-      <div class="col-3 button">
-        <button class="tablinks" onclick="openTab(event, 'pins-created')">Pins Created</button>
+    <div class="tab col-12">
+      <div class="container">
+        <div class="row">
+          <div class="col-3 button">
+            <button class="tablinks" onclick="openTab(event, 'badges')">Badges</button>
+          </div>
+          <div class="col-3 button">
+            <button class="tablinks" onclick="openTab(event, 'pins-visited')">Pins Visited</button>
+          </div>
+          <div class="col-3 button">
+            <button class="tablinks" onclick="openTab(event, 'friends')">Friends</button>
+          </div>
+          <div class="col-3 button">
+          <button class="tablinks" onclick="openTab(event, 'pins-created')">Pins Created</button>
+        </div>
       </div>
     </div>
 
@@ -36,8 +39,22 @@
     <div id="pins-visited" class="tabcontent">
       <div class="col-12" id="pf">
         <p>Pins :</p>
-        <img class="picture-pins" src="https://www.fondationbiodiversite.fr/wp-content/uploads/2019/02/FRB-Raoul-Daubresse.jpg">
-        <%= image_tag "plus.png", class: "picture-pins" %>
+        <% @pins.each do |pin| %>
+          <div class="card-product m-1 my-3">
+            <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+            <div class="card-product-infos">
+                <p>
+                  title: <%= pin.title %>
+                </p>
+                <p>
+                  description: <%= pin.description %>
+                </p>
+                <p>
+                  address: <%= pin.address %>
+                </p>
+            </div>
+          </div>
+        <% end %>
       </div>
     </div>
 

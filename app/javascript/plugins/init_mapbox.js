@@ -28,6 +28,15 @@ const addUserMarkerToMap = (map, userMarkerPosition) =>{
   new mapboxgl.Marker(userMar)
   .setLngLat([ userMarkerPosition.lng, userMarkerPosition.lat ])
   .addTo(map)
+
+  map.addControl(
+    new mapboxgl.GeolocateControl({
+      positionOptions: {
+        enableHighAccuracy: true
+      },
+      trackUserLocation: true
+    })
+  );
 };
 
 const centerMapToUser = (map, userPosition) =>{
