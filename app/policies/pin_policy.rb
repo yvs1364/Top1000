@@ -24,4 +24,8 @@ class PinPolicy < ApplicationPolicy
   def show?
     true
   end
+
+  def update_user_position?
+    true
+  end
 end

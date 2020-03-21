@@ -1,11 +1,11 @@
 class PinsController < ApplicationController
   def index
     @pins = policy_scope(Pin).order(created_at: :desc)
-    @pins = Pin.near([current_user.latitude, current_user.longitude], 0.10)
+    # @pins = Pin.near([current_user.position_latitude, current_user.position_longitude], 5)
     @user_marker =
       {
-        lat: current_user.latitude,
-        lng: current_user.longitude,
+        lat: current_user.position_latitude,
+        lng: current_user.position_longitude,
         image_url: helpers.asset_url("mark.png")
       }
     @markers = @pins.map do |pin|
@@ -16,6 +16,24 @@ class PinsController < ApplicationController
         infoWindow: render_to_string(partial: "info_window", locals: { pin: pin })
       }
     end
+  end
+
+  def update_user_position
+    authorize Pin
+    @user = current_user
+    @user.position_latitude = params[:latitude]
+    @user.position_longitude = params[:longitude]
+    @user.save
+    @user_marker =
+      {
+        lat: current_user.position_latitude,
+        lng: current_user.position_longitude,
+        image_url: helpers.asset_url("mark.png")
+      }
+      respond_to do |format|
+        format.html redirect_to pins_path
+        format.js head :no_content
+      end
   end
 
   def create
