@@ -31,8 +31,8 @@ class PinsController < ApplicationController
         image_url: helpers.asset_url("mark.png")
       }
       respond_to do |format|
-        format.html redirect_to pins_path
-        format.js head :no_content
+        format.html { redirect_to root_path }
+        format.js { head :no_content }
       end
   end
 
