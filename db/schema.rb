@@ -120,6 +120,7 @@ ActiveRecord::Schema.define(version: 2020_03_20_110600) do
     t.string "address"
     t.float "latitude"
     t.float "longitude"
+
     t.float "position_latitude"
     t.float "position_longitude"
     t.integer "sash_id"
