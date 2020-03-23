@@ -59,4 +59,12 @@ const initMapbox = () => {
       addUserMarkerToMap(map, userMarkerPosition);
     };
 };
+
+
+
+
+
+
+
+
 export { initMapbox };
