@@ -27,7 +27,7 @@ manu = User.create!(username: 'Manu', email: 'manu@mail.fr', password: 'password
 
 puts "#{User.count} users created"
 
-10.times do
+5.times do
   Pin.create!(
     title: Faker::Book.title,
     description: %w(histoire1 histoire2 histoire3 histoire4 histoire5 histoire6 histoire7 histoire8 histoire9).sample,
@@ -38,11 +38,12 @@ puts "#{User.count} users created"
 end
 
 puts "#{Pin.count} pins created"
+pins = Pin.all
 
 30.times do
   Vote.create!(
     note: rand(0...5),
-    pin_id: rand(1..10),
+    pin: pins.sample,
     user: [yvan, manu, mehdi].sample
     )
 end
@@ -54,7 +55,7 @@ puts "#{Vote.count} votes created"
       "j'ai vu la même mais autre part", "a quand la bière ?",
       "hum... je ne sais pas quoi dire", "ça va toi ?"].sample,
       user: [yvan, manu, mehdi].sample,
-      pin_id: rand(1..10)
+      pin: pins.sample
     )
 end
 

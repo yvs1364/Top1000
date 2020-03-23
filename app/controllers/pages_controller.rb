@@ -6,5 +6,6 @@ class PagesController < ApplicationController
 
   def dashboard
     @pins = Pin.all
+    @friends = User.all
   end
 end

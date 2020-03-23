@@ -5,9 +5,9 @@ class Pin < ApplicationRecord
   has_many :votes, dependent: :destroy
   has_one_attached :photo
   validates :description, presence: true
-  validates :address, presence: true
+  # validates :latitude, presence: true
+  # validates :longitude, presence: true
   validates :title, presence: true
-
-  geocoded_by :address
-  after_validation :geocode, if: :will_save_change_to_address?
+  validates :address, presence: true
+  reverse_geocoded_by :latitude, :longitude
 end
