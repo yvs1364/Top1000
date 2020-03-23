@@ -39,10 +39,15 @@ class PinsController < ApplicationController
   def create
     @pin = Pin.new(pin_params)
     @pin.user_id = current_user.id
+    results = Geocoder.search(@pin.address)
+    results.first.coordinates
+    @pin.latitude = results.first.coordinates[0]
+    @pin.longitude = results.first.coordinates[1]
+
     if @pin.save
       redirect_to pin_path(@pin)
     else
-      render "pin"
+      render :new
     end
     authorize @pin
   end
