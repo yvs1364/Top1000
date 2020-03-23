@@ -1,7 +1,7 @@
 class PinsController < ApplicationController
   def index
     @pins = policy_scope(Pin).order(created_at: :desc)
-    # @pins = Pin.near([current_user.position_latitude, current_user.position_longitude], 5)
+    @pins = Pin.near([current_user.position_latitude, current_user.position_longitude], 5)
     @user_marker =
       {
         lat: current_user.position_latitude,
