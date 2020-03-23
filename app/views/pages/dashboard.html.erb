@@ -38,7 +38,6 @@
 
     <div id="pins-visited" class="tabcontent">
       <div class="col-12" id="pf">
-        <p>Pins :</p>
         <% @pins.each do |pin| %>
           <div class="card-product m-1 my-3">
             <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
@@ -60,9 +59,19 @@
 
     <div id="friends" class="tabcontent">
       <div class="col-12" id="pf">
-        <p>Friends :</p>
-        <img class="picture-friends" src="https://www.fondationbiodiversite.fr/wp-content/uploads/2019/02/FRB-Raoul-Daubresse.jpg">
-        <%= image_tag "plus.png", class: "picture-friends" %>
+        <% @friends.each do |friend| %>
+          <div class="card-product m-1 my-3">
+            <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+            <div class="card-product-infos">
+                <p>
+                  <%= friend.username %>
+                </p>
+                <p>
+                  <%= friend.address %>
+                </p>
+            </div>
+          </div>
+        <% end %>
       </div>
     </div>
 
