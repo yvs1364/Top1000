@@ -8,6 +8,13 @@ class Pin < ApplicationRecord
   validates :latitude, presence: true
   validates :longitude, presence: true
   validates :title, presence: true
-  # validates :address, presence: true
+  validates :address, presence: true, if: :distance?
   reverse_geocoded_by :latitude, :longitude
+
+  def distance?
+    t = self.distance_from([self.user.position_latitude, self.user.position_longitude])
+    if t >= 0.25
+      errors.add(:address, "WASTED ! Your too far!")
+    end
+  end
 end
