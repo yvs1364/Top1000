@@ -1,7 +1,19 @@
-<%= simple_form_for @pin do |f| %>
-        <%= f.input :title%>
-        <%= f.input :description %>
-        <%= f.input :address, input_html: {id:'address'}, hint: true %>
-        <%= f.input :photo, as: :file %>
-        <%= f.button :submit, class: 'btn btn-primary' %>
-      <% end %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-4">
+      <div class="form-groupe">
+        <h2>ADD A PIN !</h2>
+
+          <%= simple_form_for @pin do |f| %>
+          <div class="form-inputs">
+            <%= f.input :title%>
+            <%= f.input :description %>
+            <%= f.input :address, input_html: {id:'address'}, hint: true %>
+            <%= f.input :photo, as: :file %>
+            <%= f.button :submit, class: 'btn btn-primary' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
