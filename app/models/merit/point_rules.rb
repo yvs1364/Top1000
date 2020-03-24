@@ -17,13 +17,6 @@ module Merit
       score 5, on: "comments#create"
 
       score 2, on: "votes#create"
-      #
-      # score 20, :on => [
-      #   'comments#create',
-      #   'photos#create'
-      # ]
-      #
-      # score -10, :on => 'comments#destroy'
     end
   end
 end
