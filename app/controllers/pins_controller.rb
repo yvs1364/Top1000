@@ -74,6 +74,7 @@ class PinsController < ApplicationController
     @pin = Pin.find(params[:id])
     @comment = Comment.new
     @vote = Vote.new
+    @visit = Visit.new
     authorize @pin
   end
 
