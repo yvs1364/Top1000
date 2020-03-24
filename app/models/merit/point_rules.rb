@@ -15,15 +15,8 @@ module Merit
     def initialize
       score 20, on: "pins#create"
       score 5, on: "comments#create"
-
-      score 2, on: "votes#create"
-      #
-      # score 20, :on => [
-      #   'comments#create',
-      #   'photos#create'
-      # ]
-      #
-      # score -10, :on => 'comments#destroy'
+      score 1, on: "votes#create"
+      score 10, on: "visits#create"
     end
   end
 end

@@ -3,6 +3,18 @@
   <%= image_tag "back.jpg", style: "height: 20px;"%>
   <% end %>
   <div class="container">
+    <% users = [] %>
+    <% @pin.visits.each do |visit| %>
+    <%  users << visit.user  %>
+    <% end %>
+    <% if users.include? current_user %>
+    <%= "You have already visited this place" %>
+    <% else %>
+      <%= simple_form_for [@pin, @visit] do |f| %>
+    <%= f.button :submit, class: 'btn btn-primary' %>
+    <% end %>
+    <% end %>
+
     <h1><%= @pin.title %></h1>
 
     <% if @pin.photo.attached? %>

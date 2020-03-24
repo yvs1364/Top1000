@@ -12,8 +12,8 @@ const addMarkersToMap = (map, markers) => {
 
     new mapboxgl.Marker(element)
     .setLngLat([ marker.lng, marker.lat ])
-    .addTo(map)
     .setPopup(popup)
+    .addTo(map)
   });
 };
 const addUserMarkerToMap = (map, userMarkerPosition) =>{
@@ -56,15 +56,8 @@ const initMapbox = () => {
       const userMarkerPosition = JSON.parse(mapElement.dataset.userMarker);
       const userPosition = [userMarkerPosition.lng, userMarkerPosition.lat, userMarkerPosition.image_url];
       centerMapToUser(map, userPosition);
+      map.scrollZoom.disable();
       addUserMarkerToMap(map, userMarkerPosition);
     };
 };
-
-
-
-
-
-
-
-
 export { initMapbox };

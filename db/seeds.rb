@@ -5,7 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-require 'faker'
+require "faker"
+require "csv"
 
 User.destroy_all
 Pin.destroy_all
@@ -15,30 +16,26 @@ Comment.destroy_all
 mehdi = User.create!(username: 'Mehdi', email: 'mehdi@mail.fr', password: 'password', address: 'marseille')
 yvan = User.create!(username: 'Yvan', email: 'Yvan@mail.fr', password: 'password', address: "Marseille")
 manu = User.create!(username: 'Manu', email: 'manu@mail.fr', password: 'password', address: 'Marseille')
-# 10.times do
-#   User.create!(
-#             username: Faker::JapaneseMedia::DragonBall.character,
-#             email: Faker::Internet.email,
-#             password: "password",
-#             address: %w(Paris Marseille Lille Lyon Genay Pau).sample
-#           )
-# end
-
 
 puts "#{User.count} users created"
 
-5.times do
-  Pin.create!(
-    title: Faker::Book.title,
-    description: %w(histoire1 histoire2 histoire3 histoire4 histoire5 histoire6 histoire7 histoire8 histoire9).sample,
-    address: ["17 Rue de la Loge 13002 Marseille","68 Quai du Port 13002 Marseille",
-    "62 Quai du Port 13002 Marseille","2 Rue de la Guirlande 13002 Marseille","paris"].sample,
-    user: [yvan, manu, mehdi].sample
-    )
+
+  csv_options = { col_sep: "\t", quote_char: '"', :headers => true }
+  filepath    = "#{Rails.root}/db/poi_3.csv"
+
+    CSV.foreach(filepath, csv_options) do |row|
+      Pin.create!(
+        title: row["name"],
+        description: row["type"],
+        latitude: row["@lat"],
+        longitude: row["@lon"],
+        user: [yvan, manu, mehdi].sample
+      )
+      puts "created #{row['name']}"
 end
 
-puts "#{Pin.count} pins created"
 pins = Pin.all
+puts "#{Pin.count} pins created"
 
 30.times do
   Vote.create!(

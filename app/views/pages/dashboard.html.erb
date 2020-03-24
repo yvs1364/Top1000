@@ -4,10 +4,14 @@
     <div class="col-12">
       <div class="user-picture">
         <img class="picture" src="https://www.fondationbiodiversite.fr/wp-content/uploads/2019/02/FRB-Raoul-Daubresse.jpg">
-        <img class="badge-level" src="https://www.fondationbiodiversite.fr/wp-content/uploads/2019/02/FRB-Raoul-Daubresse.jpg"/>
+        <!-- <img class="badge-level" src="https://www.fondationbiodiversite.fr/wp-content/uploads/2019/02/FRB-Raoul-Daubresse.jpg"/> -->
       </div>
-      <h5>Username</h5>
-      <p>LVL</p>
+
+
+      <h5><%= current_user.username %></h5>
+      <p> Level <%= current_user.level %>
+      </p>
+      <p><%= current_user.points %> POINTS</p>
       <%= image_tag "xp.png", class: "picture-xp" %>
     </div>
 
@@ -25,83 +29,88 @@
             <button class="tablinks" onclick="openTab(event, 'friends')">Friends</button>
           </div>
           <div class="col-3 button">
-          <button class="tablinks" onclick="openTab(event, 'pins-created')">Pins Created</button>
+            <button class="tablinks" onclick="openTab(event, 'pins-created')">Pins Created</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="badges" class="tabcontent">
+        <div class="col-12" id="Badges">
+          <% current_user.badges.each do |badge| %>
+          <p><%= badge.name %></p>
+          <% end %>
+        </div>
+      </div>
+
+      <div id="pins-visited" class="tabcontent">
+        <div class="col-12" id="pf">
+          <% current_user.visits.each do |visit| %>
+          <div class="card-product m-1 my-3">
+            <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+            <div class="card-product-infos">
+              <p>
+                title: <%= link_to visit.pin.title, pin_path(visit.pin)  %>
+              </p>
+              <p>
+                description: <%= visit.pin.description %>
+              </p>
+              <p>
+                address: <%= visit.pin.address %>
+              </p>
+              <p>Visited on : <%= visit.created_at %></p>
+            </div>
+          </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div id="friends" class="tabcontent">
+        <div class="col-12" id="pf">
+          <% @friends.each do |friend| %>
+          <div class="card-product m-1 my-3">
+            <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+            <div class="card-product-infos">
+              <p>
+                <%= friend.username %>
+              </p>
+              <p>
+                <%= friend.address %>
+              </p>
+
+            </div>
+          </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div id="pins-created" class="tabcontent">
+        <div class="col-12" id="pf">
+          <% @pins.each do |pin| %>
+          <% if pin.user_id == current_user.id %>
+          <div class="card-product m-1 my-3">
+            <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+            <div class="card-product-infos">
+              <p>
+                title: <%= pin.title %>
+              </p>
+              <p>
+                description: <%= pin.description %>
+              </p>
+              <p>
+                address: <%= pin.address %>
+              </p>
+
+            </div>
+          </div>
+          <% end %>
+          <% end %>
         </div>
       </div>
     </div>
-
-    <div id="badges" class="tabcontent">
-      <div class="col-12" id="Badges">
-        <p>Badges:<p>
-      </div>
-    </div>
-
-    <div id="pins-visited" class="tabcontent">
-      <div class="col-12" id="pf">
-        <% @pins.each do |pin| %>
-          <div class="card-product m-1 my-3">
-            <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
-            <div class="card-product-infos">
-                <p>
-                  title: <%= pin.title %>
-                </p>
-                <p>
-                  description: <%= pin.description %>
-                </p>
-                <p>
-                  address: <%= pin.address %>
-                </p>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    </div>
-
-    <div id="friends" class="tabcontent">
-      <div class="col-12" id="pf">
-        <% @friends.each do |friend| %>
-          <div class="card-product m-1 my-3">
-            <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
-            <div class="card-product-infos">
-                <p>
-                  <%= friend.username %>
-                </p>
-                <p>
-                  <%= friend.address %>
-                </p>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    </div>
-
-    <div id="pins-created" class="tabcontent">
-      <div class="col-12" id="pf">
-        <% @pins.each do |pin| %>
-          <% if pin.user_id == current_user.id %>
-            <div class="card-product m-1 my-3">
-              <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
-              <div class="card-product-infos">
-                  <p>
-                    title: <%= pin.title %>
-                  </p>
-                  <p>
-                    description: <%= pin.description %>
-                  </p>
-                  <p>
-                    address: <%= pin.address %>
-                  </p>
-              </div>
-            </div>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
   </div>
-</div>
 
-<script type="text/javascript">
-  function openTab(evt, tabName) {
+  <script type="text/javascript">
+    function openTab(evt, tabName) {
   // Declare all variables
   var i, tabcontent, tablinks;
 

@@ -1,7 +1,7 @@
 class PinsController < ApplicationController
   def index
     @pins = policy_scope(Pin).order(created_at: :desc)
-    # @pins = Pin.near([current_user.position_latitude, current_user.position_longitude], 5)
+    @pins = Pin.near([current_user.position_latitude, current_user.position_longitude], 5)
     @user_marker =
       {
         lat: current_user.position_latitude,
@@ -30,19 +30,24 @@ class PinsController < ApplicationController
         lng: current_user.position_longitude,
         image_url: helpers.asset_url("mark.png")
       }
-      respond_to do |format|
-        format.html { redirect_to root_path }
-        format.js { head :no_content }
-      end
+    respond_to do |format|
+      format.html { redirect_to root_path }
+      format.js { head :no_content }
+    end
   end
 
   def create
     @pin = Pin.new(pin_params)
     @pin.user_id = current_user.id
+    results = Geocoder.search(@pin.address)
+    results.first.coordinates
+    @pin.latitude = results.first.coordinates[0]
+    @pin.longitude = results.first.coordinates[1]
+
     if @pin.save
       redirect_to pin_path(@pin)
     else
-      render "pin"
+      render :new
     end
     authorize @pin
   end
@@ -69,6 +74,7 @@ class PinsController < ApplicationController
     @pin = Pin.find(params[:id])
     @comment = Comment.new
     @vote = Vote.new
+    @visit = Visit.new
     authorize @pin
   end
 
