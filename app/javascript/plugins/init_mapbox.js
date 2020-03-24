@@ -12,8 +12,8 @@ const addMarkersToMap = (map, markers) => {
 
     new mapboxgl.Marker(element)
     .setLngLat([ marker.lng, marker.lat ])
-    .addTo(map)
     .setPopup(popup)
+    .addTo(map)
   });
 };
 const addUserMarkerToMap = (map, userMarkerPosition) =>{
