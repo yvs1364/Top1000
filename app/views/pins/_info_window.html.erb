@@ -1,6 +1,4 @@
-<div>
-  <h2><%= pin.title%></h2>
+  <h4><%= pin.title%></h4>
   <p><%= pin.description %></p>
 
-  <%= link_to "Info", pin_path(pin) %>
-</div>
+  <%= link_to "Info", pin_path(pin), class: 'btn btn-primary' %>
