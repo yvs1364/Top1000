@@ -4,3 +4,7 @@
 require_relative "config/application"
 
 Rails.application.load_tasks
+
+task cron: :environment do
+  Merit::RankRules.new.check_rank_rules
+end

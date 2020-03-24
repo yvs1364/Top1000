@@ -12,9 +12,7 @@ class Pin < ApplicationRecord
   reverse_geocoded_by :latitude, :longitude
 
   def distance?
-    t = self.distance_from([self.user.position_latitude, self.user.position_longitude])
-    if t >= 0.25
-      errors.add(:address, "WASTED ! Your too far!")
-    end
+    t = distance_from([user.position_latitude, user.position_longitude])
+    errors.add(:address, "WASTED ! Your too far!") if t >= 0.25
   end
 end

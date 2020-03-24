@@ -30,10 +30,10 @@ class PinsController < ApplicationController
         lng: current_user.position_longitude,
         image_url: helpers.asset_url("mark.png")
       }
-      respond_to do |format|
-        format.html { redirect_to root_path }
-        format.js { head :no_content }
-      end
+    respond_to do |format|
+      format.html { redirect_to root_path }
+      format.js { head :no_content }
+    end
   end
 
   def create

@@ -20,14 +20,37 @@ Merit.setup do |config|
 end
 
 # Create application badges (uses https://github.com/norman/ambry)
-# badge_id = 0
-# [{
-#   id: (badge_id = badge_id+1),
-#   name: 'just-registered'
-# }, {
-#   id: (badge_id = badge_id+1),
-#   name: 'best-unicorn',
-#   custom_fields: { category: 'fantasy' }
-# }].each do |attrs|
-#   Merit::Badge.create! attrs
-# end
+badge_id = 0
+[{
+  id: (badge_id = badge_id+1),
+  name: 'Apprentice guide'
+}, {
+  id: (badge_id = badge_id+1),
+  name: 'Guide',
+}, {
+  id: (badge_id = badge_id+1),
+  name: 'Veteran guide',
+}, {
+  id: (badge_id = badge_id+1),
+  name: 'Taciturn',
+}, {
+  id: (badge_id = badge_id+1),
+  name: 'Talker',
+}, {
+  id: (badge_id = badge_id+1),
+  name: 'Chatty',
+}, {
+  id: (badge_id = badge_id+1),
+  name: 'Deafening',
+}, {
+  id: (badge_id = badge_id+1),
+  name: 'Judge',
+}, {
+  id: (badge_id = badge_id+1),
+  name: 'Critic',
+}, {
+  id: (badge_id = badge_id+1),
+  name: 'Know-it-all',
+}].each do |attrs|
+  Merit::Badge.create! attrs
+end
