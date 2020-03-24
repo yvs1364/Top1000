@@ -5,14 +5,11 @@ z-index: 1;
 overflow: hidden;
 }
 .mapboxgl-popup {
-  max-width: 100px;
-  border-radius: 10px;
+  max-width: 200px;
 }
+
 .mapboxgl-popup-content {
   text-align: center;
-  font-family: 'Open Sans', sans-serif;
-}
-.mapboxgl-ctrl-top-right {
-    margin-top: 50px;
-    margin-right: 8px;
+  font-family: 'roboto', sans-serif;
+  border-radius: 10px;
 }
