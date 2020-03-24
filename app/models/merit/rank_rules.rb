@@ -14,18 +14,10 @@ module Merit
   class RankRules
     include Merit::RankRulesMethods
 
-    task cron: :environment do
-  Merit::RankRules.new.check_rank_rules
-end
-
     def initialize
-      set_rank :level => 1, :to => User do |user|
-        user.points > 10
-      end
-
-      set_rank :level => 2, :to => User do |user|
-        user.points > 20
-      end
+      # set_rank :level => 1, :to => Commiter.active do |commiter|
+      #   commiter.repositories.count > 1 && commiter.followers >= 10
+      # end
       #
       # set_rank :level => 2, :to => Commiter.active do |commiter|
       #   commiter.branches.count > 1 && commiter.followers >= 10
