@@ -15,8 +15,7 @@ module Merit
     def initialize
       score 20, on: "pins#create"
       score 5, on: "comments#create"
-
-      score 2, on: "votes#create"
+      score 1, on: "votes#create"
     end
   end
 end
