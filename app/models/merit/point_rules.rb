@@ -16,6 +16,7 @@ module Merit
       score 20, on: "pins#create"
       score 5, on: "comments#create"
       score 1, on: "votes#create"
+      score 10, on: "visits#create"
     end
   end
 end

@@ -51,6 +51,15 @@ badge_id = 0
 }, {
   id: (badge_id = badge_id+1),
   name: 'Know-it-all',
+}, {
+  id: (badge_id = badge_id+1),
+  name: 'Curious',
+}, {
+  id: (badge_id = badge_id+1),
+  name: 'Wanderer',
+}, {
+  id: (badge_id = badge_id+1),
+  name: 'Explorer',
 }].each do |attrs|
   Merit::Badge.create! attrs
 end

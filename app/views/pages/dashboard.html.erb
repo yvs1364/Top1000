@@ -44,19 +44,21 @@
 
         <div id="pins-visited" class="tabcontent">
           <div class="col-12" id="pf">
-            <% @pins.each do |pin| %>
+            <% current_user.visits.each do |visit| %>
             <div class="card-product m-1 my-3">
               <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
               <div class="card-product-infos">
                 <p>
-                  title: <%= pin.title %>
+                  title: <%= visit.pin.title %>
                 </p>
                 <p>
-                  description: <%= pin.description %>
+                  description: <%= visit.pin.description %>
                 </p>
                 <p>
-                  address: <%= pin.address %>
+                  address: <%= visit.pin.address %>
                 </p>
+
+                <p>Visited on : <%= visit.created_at %></p>
               </div>
             </div>
             <% end %>
@@ -75,6 +77,7 @@
                 <p>
                   <%= friend.address %>
                 </p>
+
               </div>
             </div>
             <% end %>
@@ -97,6 +100,7 @@
                 <p>
                   address: <%= pin.address %>
                 </p>
+
               </div>
             </div>
             <% end %>

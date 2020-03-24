@@ -67,8 +67,20 @@ module Merit
         (50..149).include? vote.user.votes.count
       end
 
-      grant_on "votes#create", badge: "Critic", temporary: true do |vote|
+      grant_on "votes#create", badge: "Know-it-all", temporary: true do |vote|
         vote.user.votes.count > 149
+      end
+
+      grant_on "visits#create", badge: "Curious", temporary: true do |visit|
+        visit.user.visits.count > 10
+      end
+
+      grant_on "visits#create", badge: "Wanderer", temporary: true do |visit|
+        visit.user.visits.count > 25
+      end
+
+      grant_on "visits#create", badge: "Explorer", temporary: true do |visit|
+        visit.user.visits.count > 100
       end
 
       # If it has 5 votes, grant relevant-commenter badge
