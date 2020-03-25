@@ -9,7 +9,7 @@
 
 .star-white {
   position: relative;
-  line-height: 60px;
+  line-height: 30px;
   display: inline-block;
   color: #ebebeb;
 }
@@ -25,9 +25,9 @@
 
 .star:before {
   content: '\2605';
-  width: 60px;
-  height: 60px;
-  font-size: 60px;
+  width: 30px;
+  height: 30px;
+  font-size: 30px;
 }
 
 
