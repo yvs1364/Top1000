@@ -29,20 +29,26 @@
 
   <img src="https://res.cloudinary.com/mehdidi/image/upload/c_scale,q_100,w_370/v1585137241/18743_irwuqc.png" alt="" class="m-1 img-fluid">
   <% end %>
-  <div class="d-flex justify-content-center">
-    <ul class="ratings">
-      <li class="star star-white"></li>
-      <li class="star star-white"></li>
-      <li class="star star-white"></li>
-      <li class="star star-white"></li>
-      <li class="star star-white"></li>
-    </ul>
+  <div class="container justify-content-center">
 
-    <% if !users_votes.include? current_user %>
-    <%= simple_form_for [@pin, @vote], wrapper: :inline_form, html: { class: 'form-inline' } do |f| %>
-    <%= f.input :note, collection: 0..5 %>
-    <%= f.button :submit,'Vote!', class: 'btn btn-primary btn-sm mx-2' %>
-    <% end %>
+    <div class="row">
+      <div class="col-7">
+        <ul class="ratings">
+                <li class="star star-white"></li>
+                <li class="star star-white"></li>
+                <li class="star star-white"></li>
+                <li class="star star-white"></li>
+                <li class="star star-white"></li>
+              </ul>
+          </div>
+
+        <div class="col-5 d-flex justify-content-center"><% if !users_votes.include? current_user %>
+                <%= simple_form_for [@pin, @vote], wrapper: :inline_form, html: { class: 'form-inline' } do |f| %>
+                <%= f.input :note, collection: 0..5 %>
+                <%= f.button :submit,'Vote', class: 'btn btn-primary btn-sm mx-1' %>
+                <% end %>
+                </div>
+      </div>
   </div>
 
    <%= @pin.description %>
