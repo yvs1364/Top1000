@@ -1,4 +1,4 @@
-body {
+.background {
   height: 100vh;
   background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('background_sign_in.jpg');
   background-size: cover;
@@ -7,7 +7,7 @@ body {
 }
 
 .form-login {
-  background: white;
+  background-color: white;
   padding: 10px 20px;
   margin-top: 50px;
   border-radius: 3px;

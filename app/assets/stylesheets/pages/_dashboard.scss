@@ -1,51 +1,50 @@
 h1 {
   text-align: center;
-  font-family: "Work Sans", "Helvetica", "sans-serif";
 }
-
 h3 {
   text-align: center;
-  font-family: "Work Sans", "Helvetica", "sans-serif";
 }
-
 h4 {
   text-align: center;
-  font-family: "Work Sans", "Helvetica", "sans-serif";
 }
 h5{
   margin-top: 10px;
   text-align: center;
-  font-family: "Work Sans", "Helvetica", "sans-serif";
+  font-family: "Courier New", Courier, monospace;
 }
-
 p {
+  white-space: nowrap;
+  overflow: hidden;
   text-align: center;
   margin-bottom: -2px;
-  font-family: "Work Sans", "Helvetica", "sans-serif";
+  font-family: "Courier New", Courier, monospace;
 }
-
+.overflow-ellipsis {
+  text-overflow: ellipsis;
+}
 #journey {
   margin-left: 10px;
 }
 .col-12 {
   // padding: 5px;
-  background-color: white;
+  background-color: #FFFAFA;
   // box-shadow: 0 0 4px rgba(250,39,2,0.3);
-  border-radius: 5px 5px 0 0 ;
+  border-radius: 5px 5px 0 0;
 }
-#tab {
+#tab{
+  background-color: #FFFAFA;
   border-radius: 0 0 5px 5px ;
 }
 #Badges{
   padding: 5px;
-  background-color: white;
+  background-color: #FFFAFA;
   // box-shadow: 0 0 4px rgba(250,39,2,0.3);
 }
 #pf {
   // margin-top: 60px;
-  background-color: white;
+  background-color: #FFFAFA;
   // box-shadow: 0 0 4px rgba(250,39,2,0.3);
-  border-radius: 0px 0px 5px 5px;
+  border-radius: 0 0 5px 5px ;
 }
 
 .user-picture {
@@ -53,15 +52,14 @@ p {
 }
 
 .picture {
-  border-radius: 46px;
-  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
   display: block;
   margin-top: 15px;
   margin-left: auto;
   margin-right: auto;
   width: 100px;
   height: 100px;
-  box-shadow: 0 0 2px rgba(250,39,2,0.3);
+  box-shadow: 2px 3px 4px rgba(251, 169, 97,0.2);
 }
 
 .badge-level {
@@ -83,9 +81,13 @@ p {
 .button {
   border-bottom: 3px solid #700F00;
   text-align: center;
+  padding: 0 !important;
 }
 
 .tab button {
+  border-radius: 7px 7px 0 0;
+  width: 100%;
+  height: 100%;
   background-color: inherit;
   border: none;
   outline: none;
@@ -96,19 +98,20 @@ p {
 
 /* Change background color of buttons on hover */
 .button:hover {
-  background-color: rgba(251, 169, 97,0.4);
+  background-color: rgba(251, 169, 97,0.2);
   border-bottom: 3px solid #FA851D;
 }
 
 /* Create an active/current tablink class */
 .tab button.active {
-  background-color: rgba(251, 169, 97,0.4);
+  // border-radius: 7px 7px 0 0;
+  background-color: rgba(251, 169, 97,0.2)
 }
+
 /* Style the tab content */
 .tabcontent {
   display: none;
   padding: 6px 6px;
-  font-family: "Work Sans", "Helvetica", "sans-serif";
 }
 
 .picture-pins {
@@ -132,17 +135,13 @@ p {
   margin-right: auto;
   display: block;
 }
-
-
-
 .card-product {
   overflow: hidden;
   height: 120px;
   background: white;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  box-shadow: 2px 3px 4px rgba(251, 169, 97,0.2);
   display: flex;
   align-items: center;
-  font-family: "Work Sans", "Helvetica", "sans-serif";
 }
 
 .card-product img {
@@ -158,6 +157,7 @@ p {
 }
 
 .card-product p {
+  text-align: left;
   font-size: 12px;
   line-height: 1.4;
   opacity: .7;
