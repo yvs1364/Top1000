@@ -16,6 +16,7 @@
     <% end %>
 
     <h1><%= @pin.title %></h1>
+    <p><%= @pin.description %></p>
 
     <% if @pin.photo.attached? %>
     <div><%= cl_image_tag @pin.photo.key, height: 300, width: 400, crop: :fill %></div>
@@ -33,7 +34,6 @@
     <%= f.button :submit, class: 'btn btn-primary' %>
     <% end %>
     <% end %>
-    <p><%= @pin.description %></p>
 
 
     <% sum = 0 %>
@@ -120,4 +120,3 @@
       <%= f.input :content %>
       <%= f.button :submit, class: 'btn btn-primary' %>
       <% end %>
-

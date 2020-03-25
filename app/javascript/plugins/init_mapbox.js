@@ -56,8 +56,8 @@ const initMapbox = () => {
       const userMarkerPosition = JSON.parse(mapElement.dataset.userMarker);
       const userPosition = [userMarkerPosition.lng, userMarkerPosition.lat, userMarkerPosition.image_url];
       centerMapToUser(map, userPosition);
-      map.scrollZoom.disable();
       addUserMarkerToMap(map, userMarkerPosition);
+      map.scrollZoom.disable();
     };
 };
 export { initMapbox };
