@@ -29,18 +29,18 @@ const addUserMarkerToMap = (map, userMarkerPosition) =>{
   .setLngLat([ userMarkerPosition.lng, userMarkerPosition.lat ])
   .addTo(map)
 
-  map.addControl(
-    new mapboxgl.GeolocateControl({
-      positionOptions: {
-        enableHighAccuracy: true
-      },
-      trackUserLocation: true
-    })
-  );
+  // map.addControl(
+  //   new mapboxgl.GeolocateControl({
+  //     positionOptions: {
+  //       enableHighAccuracy: true
+  //     },
+  //     trackUserLocation: true
+  //   })
+  // );
 };
 
 const centerMapToUser = (map, userPosition) =>{
-map.flyTo({center: userPosition, zoom: 14.5});
+map.jumpTo({center: userPosition, zoom: 14.5});
 }
 
 const initMapbox = () => {
@@ -55,8 +55,8 @@ const initMapbox = () => {
       addMarkersToMap(map, markers);
       const userMarkerPosition = JSON.parse(mapElement.dataset.userMarker);
       const userPosition = [userMarkerPosition.lng, userMarkerPosition.lat, userMarkerPosition.image_url];
-      centerMapToUser(map, userPosition);
       addUserMarkerToMap(map, userMarkerPosition);
+      centerMapToUser(map, userPosition);
       map.scrollZoom.disable();
     };
 };

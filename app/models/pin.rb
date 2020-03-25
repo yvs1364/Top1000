@@ -13,6 +13,6 @@ class Pin < ApplicationRecord
 
   def distance?
     t = distance_from([user.position_latitude, user.position_longitude])
-    errors.add(:address, "WASTED ! Your too far!") if t >= 0.25
+    errors.add(:address, "WASTED ! Your too far!") if t >= 25
   end
 end

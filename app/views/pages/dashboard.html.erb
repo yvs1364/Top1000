@@ -3,20 +3,25 @@
   <div class="row">
     <div class="col-12">
       <div class="user-picture">
-        <img class="picture" src="https://www.fondationbiodiversite.fr/wp-content/uploads/2019/02/FRB-Raoul-Daubresse.jpg">
         <!-- <img class="badge-level" src="https://www.fondationbiodiversite.fr/wp-content/uploads/2019/02/FRB-Raoul-Daubresse.jpg"/> -->
+        <% if current_user.photo.attached? %>
+            <%= cl_image_tag current_user.photo.key, crop: :thumb, class: "picture", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+        <% else %>
+            <%= image_tag "https://miro.medium.com/max/480/1*W35QUSvGpcLuxPo3SRTH4w.png
+          ", crop: :thumb, class: "picture", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+        <% end %>
       </div>
 
 
       <h5><%= current_user.username %></h5>
       <p> Level <%= current_user.level %>
       </p>
-      <p><%= current_user.points %> POINTS</p>
+      <p><%= current_user.points %> points</p>
       <%= image_tag "xp.png", class: "picture-xp" %>
     </div>
 
 
-    <div class="tab col-12">
+    <div class="tab col-12" id="tab">
       <div class="container">
         <div class="row">
           <div class="col-3 button">
