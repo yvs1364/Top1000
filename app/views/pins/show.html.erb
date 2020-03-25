@@ -24,7 +24,7 @@
 
 
   <% if @pin.photo.attached? %>
-  <div><%= cl_image_tag @pin.photo.key, height: 300, width: 400, crop: :fill %></div>
+  <div><%= cl_image_tag @pin.photo.key, height: 300, width: 350, crop: :fill %></div>
   <% else %>
 
   <img src="https://res.cloudinary.com/mehdidi/image/upload/c_scale,q_100,w_370/v1585137241/18743_irwuqc.png" alt="" class="m-1 img-fluid">
@@ -51,7 +51,7 @@
       </div>
   </div>
 
-  <%= @pin.description %>
+   <%= @pin.description %>
 
   <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
     <% if @pin.comments.count == 1 %>
@@ -343,5 +343,3 @@
   <% end %>
 
   <% end %>
-
-

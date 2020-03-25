@@ -10,16 +10,17 @@ h4 {
 h5{
   margin-top: 10px;
   text-align: center;
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Work Sans", "Helvetica", "sans-serif";
 }
 p {
   white-space: nowrap;
   overflow: hidden;
   text-align: center;
   margin-bottom: -2px;
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Work Sans", "Helvetica", "sans-serif";
 }
 .overflow-ellipsis {
+  width: 150px;
   text-overflow: ellipsis;
 }
 #journey {

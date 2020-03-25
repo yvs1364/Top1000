@@ -13,6 +13,7 @@ class Pin < ApplicationRecord
 
   def distance?
     t = distance_from([user.position_latitude, user.position_longitude])
-    errors.add(:address, "Lost? You can only add a place if you are close to it (250m)") if t >= 25
+    errors.add(:address, "Lost? You can only add a place if you are close to it (250m)") if t >= 1
+
   end
 end
