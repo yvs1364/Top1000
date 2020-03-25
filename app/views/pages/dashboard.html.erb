@@ -16,8 +16,7 @@
       <h5><%= current_user.username %></h5>
       <p> Level <%= current_user.level %>
       </p>
-      <p><%= current_user.points %> points</p>
-      <%= image_tag "xp.png", class: "picture-xp" %>
+      <p style="margin-bottom:20px;"><%= current_user.points %> points</p>
     </div>
 
 
@@ -34,7 +33,7 @@
             <button class="tablinks" onclick="openTab(event, 'friends')">Friends</button>
           </div>
           <div class="col-3 button">
-            <button class="tablinks" onclick="openTab(event, 'pins-created')">Pins Created</button>
+            <button class="tablinks"onclick="openTab(event, 'pins-created')">Pins Created</button>
           </div>
         </div>
       </div>
@@ -51,18 +50,18 @@
         <div class="col-12" id="pf">
           <% current_user.visits.each do |visit| %>
           <div class="card-product m-1 my-3">
-            <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+            <% if visit.pin.photo.attached? %>
+              <%= cl_image_tag  visit.pin.photo.key %>
+            <% else %>
+              <img src="https://source.unsplash.com/random" />
+            <% end %>
             <div class="card-product-infos">
-              <p>
-                title: <%= link_to visit.pin.title, pin_path(visit.pin)  %>
+              <h6>
+                <%= link_to visit.pin.title, pin_path(visit.pin)  %>
+              </h6>
+              <p class="overflow-ellipsis">
+                <%= visit.pin.description %>
               </p>
-              <p>
-                description: <%= visit.pin.description %>
-              </p>
-              <p>
-                address: <%= visit.pin.address %>
-              </p>
-              <p>Visited on : <%= visit.created_at %></p>
             </div>
           </div>
           <% end %>
@@ -93,18 +92,10 @@
           <% @pins.each do |pin| %>
           <% if pin.user_id == current_user.id %>
           <div class="card-product m-1 my-3">
-            <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+            <img src="https://source.unsplash.com/random" />
             <div class="card-product-infos">
-              <p>
-                title: <%= pin.title %>
-              </p>
-              <p>
-                description: <%= pin.description %>
-              </p>
-              <p>
-                address: <%= pin.address %>
-              </p>
-
+              <h6><%= pin.title %></h6>
+              <p overflow-ellipsis><%= pin.description %></p>
             </div>
           </div>
           <% end %>
