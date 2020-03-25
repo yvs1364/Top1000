@@ -29,9 +29,12 @@ p {
 }
 .col-12 {
   // padding: 5px;
-  background-color: #FEF2E8;
+  background-color: white;
   // box-shadow: 0 0 4px rgba(250,39,2,0.3);
-  border-radius: 0 0 5px 5px;
+  border-radius: 5px 5px 0 0 ;
+}
+#tab {
+  border-radius: 0 0 5px 5px ;
 }
 #Badges{
   padding: 5px;
@@ -42,7 +45,7 @@ p {
   // margin-top: 60px;
   background-color: white;
   // box-shadow: 0 0 4px rgba(250,39,2,0.3);
-  border-radius: 5px 5px 0 0;
+  border-radius: 0px 0px 5px 5px;
 }
 
 .user-picture {
@@ -93,15 +96,14 @@ p {
 
 /* Change background color of buttons on hover */
 .button:hover {
-  background-color: #ddd;
+  background-color: rgba(251, 169, 97,0.4);
   border-bottom: 3px solid #FA851D;
 }
 
 /* Create an active/current tablink class */
 .tab button.active {
-  background-color: #ccc;
+  background-color: rgba(251, 169, 97,0.4);
 }
-
 /* Style the tab content */
 .tabcontent {
   display: none;
