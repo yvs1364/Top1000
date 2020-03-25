@@ -9,14 +9,14 @@
 
 .star-white {
   position: relative;
-  line-height: 30px;
+  line-height: 32px;
   display: inline-block;
   color: #ebebeb;
 }
 
 .star-yellow {
   position: relative;
-  line-height: 60px;
+  line-height: 32px;
   display: inline-block;
   transition: color 0.2s ease;
   color: #FFDF00;
@@ -25,16 +25,9 @@
 
 .star:before {
   content: '\2605';
-  width: 30px;
-  height: 30px;
-  font-size: 30px;
+  width: 32px;
+  height: 32px;
+  font-size: 32px;
 }
 
 
-.star:hover,
-.star.selected,
-.star:hover ~ .star,
-.star.selected ~ .star{
-  transition: color 0.8s ease;
-  color: yellow;
-}

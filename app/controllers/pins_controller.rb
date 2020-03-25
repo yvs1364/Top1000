@@ -78,6 +78,21 @@ class PinsController < ApplicationController
     authorize @pin
   end
 
+  def get_average
+    sum = 0
+    @pin = Pin.find(params[:id])
+    if @pin.votes.counts == 0
+      @average = "0"
+    else
+    @pin.votes.each do |vote|
+      sum += vote.note
+    end
+  end
+
+    @average = sum / ppin.votes.count
+    return @average
+  end
+
   private
 
   def pin_params
