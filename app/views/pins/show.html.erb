@@ -1,54 +1,85 @@
-  <%= link_to "/", class: "back" do %>
-
-  <%= image_tag "back.jpg", style: "height: 20px;"%>
+<div class="container">
+  <% users_visits = [] %>
+  <% @pin.visits.each do |visit| %>
+  <%  users_visits << visit.user  %>
   <% end %>
-  <div class="container">
-    <% users = [] %>
-    <% @pin.visits.each do |visit| %>
-    <%  users << visit.user  %>
-    <% end %>
-    <% if users.include? current_user %>
-    <%= "You have already visited this place" %>
-    <% else %>
-      <%= simple_form_for [@pin, @visit] do |f| %>
-    <%= f.button :submit, class: 'btn btn-primary' %>
-    <% end %>
-    <% end %>
 
-    <h1><%= @pin.title %></h1>
-    <p><%= @pin.description %></p>
+  <% if users_visits.include? current_user %>
+  <%= "You already have visited this place" %>
+  <% else %>
+  <%= simple_form_for [@pin, @visit] do |f| %>
+  <%= f.button :submit, 'Mark as visited', class: 'btn btn-outline-primary btn-sm' %>
+  <% end %>
+  <% end %>
 
-    <% if @pin.photo.attached? %>
-    <div><%= cl_image_tag @pin.photo.key, height: 300, width: 400, crop: :fill %></div>
-    <h5>Ajoutez une note</h5>
-    <% else %>
-    <div></div>
-    <% end %>
-    <% users = [] %>
-    <% @pin.votes.each do |vote|%>
-    <% users << vote.user %>
-    <% end %>
-    <% if !users.include? current_user %>
-    <%= simple_form_for [@pin, @vote] do |f| %>
+  <p class="h4"> <%= @pin.title %> </p>
+
+
+  <% if @pin.votes.count == 0 %>
+
+  <% users_votes = [] %>
+  <% @pin.votes.each do |vote|%>
+  <% users_votes << vote.user %>
+  <% end %>
+
+
+  <% if @pin.photo.attached? %>
+  <div><%= cl_image_tag @pin.photo.key, height: 300, width: 400, crop: :fill %></div>
+  <% else %>
+
+  <img src="https://res.cloudinary.com/mehdidi/image/upload/c_scale,q_100,w_370/v1585137241/18743_irwuqc.png" alt="" class="m-1 img-fluid">
+  <% end %>
+  <div class="d-flex justify-content-center">
+    <ul class="ratings">
+      <li class="star star-white"></li>
+      <li class="star star-white"></li>
+      <li class="star star-white"></li>
+      <li class="star star-white"></li>
+      <li class="star star-white"></li>
+    </ul>
+
+    <% if !users_votes.include? current_user %>
+    <%= simple_form_for [@pin, @vote], wrapper: :inline_form, html: { class: 'form-inline' } do |f| %>
     <%= f.input :note, collection: 0..5 %>
-    <%= f.button :submit, class: 'btn btn-primary' %>
+    <%= f.button :submit,'Vote!', class: 'btn btn-primary btn-sm mx-2' %>
     <% end %>
-    <% end %>
+  </div>
 
+  <%= @pin.description %>
 
-    <% sum = 0 %>
-    <% if @pin.votes.length == 0 %>
-    <p><% "0 votes for the moment" %></p>
+  <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+    <% if @pin.comments.count == 1 %>
+    <p my-2>See <%= @pin.comments.count %> comment </p>
+
     <% else %>
-    <% @pin.votes.each do |vote|  %>
-    <% sum += vote.note %>
-    <% end  %>
-    <% average = sum / @pin.votes.count %>
-     <div class="m-1"><%= simple_form_for [@pin, @vote] do |f| %>
-        <%= f.input :note, collection: 0..5 %>
-        <%= f.button :submit, class: 'btn btn-primary' %>
-        <% end %></div>
+    <p my-2>See <%= @pin.comments.count %> comments </p>
     <% end %>
+  </a>
+
+  <div class="collapse" id="collapseExample">
+    <% @pin.comments.each do |comment| %>
+
+    <p><strong><%= comment.user.username %></strong></p>
+    <p><%= comment.content %></p>
+
+    <% end %>
+  </div>
+
+  <%= simple_form_for [@pin, @comment] do |f| %>
+  <%= f.input :content, label: false %>
+  <%= f.button :submit,'Add a comment', class: 'btn btn-primary btn-block mx-0' %>
+  <% end %>
+
+
+  <% else %>
+
+
+  <div class="d-flex justify-content-center">
+    <% sum = 0 %>
+    <% @pin.votes.each do |vote| %>
+    <% sum += vote.note %>
+    <% end %>
+    <% average = sum / @pin.votes.count %>
 
     <% case average %>
     <% when 0 %>
@@ -100,23 +131,211 @@
       <li class="star star-yellow"></li>
     </ul>
     <% end %>
+    <% users = [] %>
+    <% @pin.votes.each do |vote|%>
+    <% users_votes << vote.user %>
+    <% end %>
+    <% if !users_votes.include? current_user %>
+    <%= simple_form_for [@pin, @vote], wrapper: :inline_form, html: { class: 'form-inline' } do |f| %>
+    <%= f.input :note, collection: 0..5 %>
+    <%= f.button :submit,'Vote!', class: 'btn btn-primary btn-sm mx-2' %>
+    <% end %>
+  </div>
 
 
 
-    <p>
-      <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-        <h3>See <%= @pin.comments.count %> comments </h3>
-      </a>
-      <div class="collapse" id="collapseExample">
-        <% @pin.comments.each do |comment| %>
+  <% if @pin.photo.attached? %>
+  <div><%= cl_image_tag @pin.photo.key, height: 300, width: 400, crop: :fill %></div>
+  <% else %>
 
-        <h5><%= comment.user.username %></h5>
-        <p><%= comment.content %></p>
+  <img src="https://res.cloudinary.com/mehdidi/image/upload/c_scale,q_100,w_370/v1585137241/18743_irwuqc.png" alt="" class="m-1 img-fluid">
+  <% end %>
+  <% sum = 0 %>
+  <% @pin.votes.each do |vote| %>
+  <% sum += vote.note %>
+  <% end %>
+  <% average = sum / @pin.votes.count %>
 
-        <% end %>
-      </div>
-      <h3>Add a comment</h3>
-      <%= simple_form_for [@pin, @comment] do |f| %>
-      <%= f.input :content %>
-      <%= f.button :submit, class: 'btn btn-primary' %>
-      <% end %>
+  <% case average %>
+  <% when 0 %>
+  <ul class="ratings">
+    <li class="star star-white"></li>
+    <li class="star star-white"></li>
+    <li class="star star-white"></li>
+    <li class="star star-white"></li>
+    <li class="star star-white"></li>
+  </ul>
+  <% when 1 %>
+  <ul class="ratings">
+    <li class="star star-white"></li>
+    <li class="star star-white"></li>
+    <li class="star star-white"></li>
+    <li class="star star-white"></li>
+    <li class="star star-yellow"></li>
+  </ul>
+  <% when 2 %>
+  <ul class="ratings">
+    <li class="star star-white"></li>
+    <li class="star star-white"></li>
+    <li class="star star-white"></li>
+    <li class="star star-yellow"></li>
+    <li class="star star-yellow"></li>
+  </ul>
+  <% when 3 %>
+  <ul class="ratings">
+    <li class="star star-white"></li>
+    <li class="star star-white"></li>
+    <li class="star star-yellow"></li>
+    <li class="star star-yellow"></li>
+    <li class="star star-yellow"></li>
+  </ul>
+  <% when 4 %>
+  <ul class="ratings">
+    <li class="star star-white"></li>
+    <li class="star star-yellow"></li>
+    <li class="star star-yellow"></li>
+    <li class="star star-yellow"></li>
+    <li class="star star-yellow"></li>
+  </ul>
+  <% when 5 %>
+  <ul class="ratings">
+    <li class="star star-yellow"></li>
+    <li class="star star-yellow"></li>
+    <li class="star star-yellow"></li>
+    <li class="star star-yellow"></li>
+    <li class="star star-yellow"></li>
+  </ul>
+
+
+  <%= @pin.description %>
+
+  <% end %>
+  <p>
+    <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+      é<% if @pin.comments.count == 1 %>
+      <p my-2>See <%= @pin.comments.count %> comment </p>
+    </a>
+    <% else %>
+
+    <p my-2>See <%= @pin.comments.count %> comments </p>
+  </a>
+  <% end %>
+
+  <div class="collapse" id="collapseExample">
+    <% @pin.comments.each do |comment| %>
+
+    <p><strong><%= comment.user.username %></strong></p>
+    <p><%= comment.content %></p>
+
+    <% end %>
+  </div>
+
+  <%= simple_form_for [@pin, @comment] do |f| %>
+  <%= f.input :content, label: false %>
+  <%= f.button :submit,'Add a comment', class: 'btn btn-primary btn-block mx-0' %>
+  <% end %>
+
+  <% end %>
+
+  <% end %>
+
+  <% else %>
+
+
+
+
+  <% if @pin.photo.attached? %>
+  <div><%= cl_image_tag @pin.photo.key, height: 300, width: 400, crop: :fill %></div>
+  <% else %>
+  <img src="https://res.cloudinary.com/mehdidi/image/upload/c_scale,q_100,w_370/v1585137241/18743_irwuqc.png" alt="" class="m-1 img-fluid">
+  <% end %>
+  <% sum = 0 %>
+  <% @pin.votes.each do |vote| %>
+  <% sum += vote.note %>
+  <% end %>
+  <% average = sum / @pin.votes.count %>
+
+  <% case average %>
+  <% when 0 %>
+  <ul class="ratings">
+    <li class="star star-white"></li>
+    <li class="star star-white"></li>
+    <li class="star star-white"></li>
+    <li class="star star-white"></li>
+    <li class="star star-white"></li>
+  </ul>
+  <% when 1 %>
+  <ul class="ratings">
+    <li class="star star-white"></li>
+    <li class="star star-white"></li>
+    <li class="star star-white"></li>
+    <li class="star star-white"></li>
+    <li class="star star-yellow"></li>
+  </ul>
+  <% when 2 %>
+  <ul class="ratings">
+    <li class="star star-white"></li>
+    <li class="star star-white"></li>
+    <li class="star star-white"></li>
+    <li class="star star-yellow"></li>
+    <li class="star star-yellow"></li>
+  </ul>
+  <% when 3 %>
+  <ul class="ratings">
+    <li class="star star-white"></li>
+    <li class="star star-white"></li>
+    <li class="star star-yellow"></li>
+    <li class="star star-yellow"></li>
+    <li class="star star-yellow"></li>
+  </ul>
+  <% when 4 %>
+  <ul class="ratings">
+    <li class="star star-white"></li>
+    <li class="star star-yellow"></li>
+    <li class="star star-yellow"></li>
+    <li class="star star-yellow"></li>
+    <li class="star star-yellow"></li>
+  </ul>
+  <% when 5 %>
+  <ul class="ratings">
+    <li class="star star-yellow"></li>
+    <li class="star star-yellow"></li>
+    <li class="star star-yellow"></li>
+    <li class="star star-yellow"></li>
+    <li class="star star-yellow"></li>
+  </ul>
+  <% end %>
+
+
+
+
+  <%= @pin.description %>
+
+
+  <p>
+    <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+      <% if @pin.comments.count == 1 %>
+      <p my-2>See <%= @pin.comments.count %> comment </p>
+    </a>
+    <% else %>
+    <p my-2>See <%= @pin.comments.count %> comments </p>
+  </a>
+  <% end %>
+
+  <div class="collapse" id="collapseExample">
+    <% @pin.comments.each do |comment| %>
+
+    <p><strong><%= comment.user.username %></strong></p>
+    <p><%= comment.content %></p>
+
+    <% end %>
+  </div>
+
+  <%= simple_form_for [@pin, @comment] do |f| %>
+  <%= f.input :content, label: false %>
+  <%= f.button :submit,'Add a comment', class: 'btn btn-primary btn-block mx-0' %>
+  <% end %>
+
+  <% end %>
+
+

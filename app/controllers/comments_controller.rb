@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
 
       redirect_to pin_path(@pin)
     else
-      raise
+
       render "pins/show"
     end
     authorize @comment
