@@ -8,29 +8,21 @@
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
-  </head>
-  <body>
-  <!-- Facebook Open Graph data -->
-  <meta property="og:title" content="<%= meta_title %>" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="<%= request.original_url %>" />
-  <meta property="og:image" content="<%= meta_image %>" />
-  <meta property="og:description" content="<%= meta_description %>" />
-  <meta property="og:site_name" content="<%= meta_title %>" />
-
-  <!-- Twitter Card data -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="<%= meta_title %>">
-  <meta name="twitter:description" content="<%= meta_description %>">
-  <meta name="twitter:image:src" content="<%= meta_image %>">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Flanr</title>
-  <%= csrf_meta_tags %>
-  <%= action_cable_meta_tag %>
-  <%= stylesheet_link_tag 'application', media: 'all' %>
-  <%= stylesheet_pack_tag 'application', media: 'all' %>
-  <link href="https://res.cloudinary.com/mehdidi/image/upload/v1585215770/11_ycsfzl_lqukp7.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" /><!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
+    <link href="https://res.cloudinary.com/mehdidi/image/upload/v1585215770/11_ycsfzl_lqukp7.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" /><!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
+    <!-- Facebook Open Graph data -->
+    <meta property="og:title" content="<%= meta_title %>" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="<%= request.original_url %>" />
+    <meta property="og:image" content="<%= meta_image %>" />
+    <meta property="og:description" content="<%= meta_description %>" />
+    <meta property="og:site_name" content="<%= meta_title %>" />
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<%= meta_title %>">
+    <meta name="twitter:description" content="<%= meta_description %>">
+    <meta name="twitter:image:src" content="<%= meta_image %>">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
 <body>
   <%= render 'shared/navbar' %>
@@ -38,15 +30,6 @@
 
   <%= yield %>
 
-
-  <% if alert  %>
-  <div class="flash flash-danger alert alert-dismissible fade show" role="alert">
-    <span><strong>Oops!</strong> 😱 a problem has occurred.</span>
-    <a data-dismiss="alert" aria-label="Close">
-      <i class="fas fa-times"></i>
-    </a>
-  </div>
-  <% end %>
   <%= javascript_include_tag 'application' %>
   <%= javascript_pack_tag 'application' %>
 </body>
