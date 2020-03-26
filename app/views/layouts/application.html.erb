@@ -10,8 +10,6 @@
     <%= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
   </head>
   <body>
-    <%= render 'shared/navbar' %>
-    <%= render 'shared/flashes' %>
   <!-- Facebook Open Graph data -->
   <meta property="og:title" content="<%= meta_title %>" />
   <meta property="og:type" content="website" />
@@ -35,14 +33,6 @@
   <link href="https://res.cloudinary.com/mehdidi/image/upload/v1585215770/11_ycsfzl_lqukp7.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" /><!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
 </head>
 <body>
-  <% if notice %>
-  <div class="flash flash-warning alert alert-dismissible fade show" role="alert">
-    <span><strong>Mmh</strong> 🤔 seems like you don't have <a href="#">profile picture</a> yet.</span>
-    <a data-dismiss="alert" aria-label="Close">
-      <i class="fas fa-times"></i>
-    </a>
-  </div>
-  <% end %>
   <%= render 'shared/navbar' %>
   <%= render 'shared/flashes' %>
 
