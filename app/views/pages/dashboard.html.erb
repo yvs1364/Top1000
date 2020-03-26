@@ -72,7 +72,11 @@
         <div class="col-12" id="pf">
           <% @friends.each do |friend| %>
           <div class="card-product m-1 my-3">
-            <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+              <% if friend.photo.attached? %>
+                <%= cl_image_tag  visit.pin.photo.key %>
+              <% else %>
+                <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+              <% end %>
             <div class="card-product-infos">
               <p>
                 <%= friend.username %>
@@ -80,7 +84,6 @@
               <p>
                 <%= friend.address %>
               </p>
-
             </div>
           </div>
           <% end %>
@@ -92,7 +95,11 @@
           <% @pins.each do |pin| %>
           <% if pin.user_id == current_user.id %>
           <div class="card-product m-1 my-3">
-            <img src="https://source.unsplash.com/random" />
+            <% if pin.photo.attached? %>
+              <%= cl_image_tag  pin.photo.key %>
+            <% else %>
+              <img src="https://source.unsplash.com/random" />
+            <% end %>
             <div class="card-product-infos">
               <h6><%= pin.title %></h6>
               <p overflow-ellipsis><%= pin.description %></p>
