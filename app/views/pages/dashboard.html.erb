@@ -67,23 +67,18 @@
           <% end %>
         </div>
       </div>
-
       <div id="friends" class="tabcontent">
         <div class="col-12" id="pf">
           <% @friends.each do |friend| %>
           <div class="card-product m-1 my-3">
               <% if friend.photo.attached? %>
-                <%= cl_image_tag  visit.pin.photo.key %>
+                <%= cl_image_tag friend.photo.key %>
               <% else %>
-                <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+                  <%= image_tag "https://miro.medium.com/max/480/1*W35QUSvGpcLuxPo3SRTH4w.png" %>
               <% end %>
             <div class="card-product-infos">
-              <p>
-                <%= friend.username %>
-              </p>
-              <p>
-                <%= friend.address %>
-              </p>
+              <p><%= friend.username %></p>
+              <p><%= friend.address %></p>
             </div>
           </div>
           <% end %>
@@ -101,7 +96,11 @@
               <img src="https://source.unsplash.com/random" />
             <% end %>
             <div class="card-product-infos">
+<<<<<<< HEAD
               <h6><%= link_to pin.title, pin_path(pin)  %></h6>
+=======
+              <h6> <%= link_to pin.title, pin_path(pin) %></h6>
+>>>>>>> 37d65aec2f6fc6d45a403f222c82b93cf48fd36c
               <p overflow-ellipsis><%= pin.description %></p>
             </div>
           </div>
@@ -114,23 +113,20 @@
 
   <script type="text/javascript">
     function openTab(evt, tabName) {
-  // Declare all variables
-  var i, tabcontent, tablinks;
-
-  // Get all elements with class="tabcontent" and hide them
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-
-  // Get all elements with class="tablinks" and remove the class "active"
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-
-  // Show the current tab, and add an "active" class to the button that opened the tab
-  document.getElementById(tabName).style.display = "block";
-  evt.currentTarget.className += " active";
-}
-</script>
+    // Declare all variables
+    var i, tabcontent, tablinks;
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
+    }
+  </script>
