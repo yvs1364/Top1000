@@ -38,15 +38,6 @@
 
   <%= yield %>
 
-
-  <% if alert  %>
-  <div class="flash flash-danger alert alert-dismissible fade show" role="alert">
-    <span><strong>Oops!</strong> 😱 a problem has occurred.</span>
-    <a data-dismiss="alert" aria-label="Close">
-      <i class="fas fa-times"></i>
-    </a>
-  </div>
-  <% end %>
   <%= javascript_include_tag 'application' %>
   <%= javascript_pack_tag 'application' %>
 </body>
