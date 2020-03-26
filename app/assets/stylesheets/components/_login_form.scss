@@ -1,6 +1,7 @@
 .background {
   height: 100vh;
-  background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://res.cloudinary.com/mehdidi/image/upload/v1585213665/background_sign_in_dz47ph.jpg');
+  background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+    url('https://res.cloudinary.com/mehdidi/image/upload/v1585213665/background_sign_in_dz47ph.jpg');
   background-size: cover;
   background-position: center;
   font-family: "Work Sans", "Helvetica", "sans-serif";
@@ -31,7 +32,7 @@
 }
 
 h1 {
-  color: black;
+  color: white;
   font-size: 14px;
   font-weight: bold;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);

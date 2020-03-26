@@ -1,4 +1,11 @@
+
   <h5><%= pin.title%></h5>
+
+  <% if pin.description.match?(/^[0-9A-Za-z!@.,;:'"?-]{1,100}$/) %>
   <p><%= pin.description %></p>
+  <% else %>
+  <% jeaneude = pin.description.match(/^.{0,100}/) %>
+    <p> <%= "#{jeaneude} ..." %> <p>
+  <% end %>
 
   <%= link_to "Info", pin_path(pin), class: 'btn btn-primary' %>
