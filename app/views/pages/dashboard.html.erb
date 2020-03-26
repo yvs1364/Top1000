@@ -101,7 +101,7 @@
               <img src="https://source.unsplash.com/random" />
             <% end %>
             <div class="card-product-infos">
-              <h6><%= pin.title %></h6>
+              <h6><%= link_to pin.title, pin_path(pin)  %></h6>
               <p overflow-ellipsis><%= pin.description %></p>
             </div>
           </div>
